@@ -25,7 +25,8 @@ Validate the HTML and CSS code.
 Publish the website in the given URL.
 
 ## PROGRAM :
-```gall.html
+```
+image.html
 
 <!DOCTYPE html>
 <html lang="en">
