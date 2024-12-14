@@ -26,144 +26,140 @@ Publish the website in the given URL.
 
 ## PROGRAM :
 ```
+gall.html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Disney Gallery</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Satisfy&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: #f9f9f9;
-            color: #333;
-        }
-
-        h1 {
-            font-family: 'Satisfy', cursive;
-            font-size: 3em;
-            margin: 20px;
-            color: #ff6347;
-            text-align: center;
-        }
-
-        h2 {
-            font-family: 'Satisfy', cursive;
-            color: #ff6347;
-            font-size: 1.5em;
-            margin-top: -10px;
-        }
-
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            max-width: 1200px;
-            padding: 10px;
-            justify-content: center;
-        }
-
-        .gallery-item {
-            text-align: center;
-            width: 200px;
-            margin: 10px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.3s;
-        }
-
-     
-        .gallery-item img {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .gallery-item p {
-            font-family: 'Satisfy', cursive;
-            font-size: 1.3em;
-            color: #555;
-            padding: 10px 0;
-            margin: 0;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-    </style>
+    <title>Interactive Image Gallery</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Image Gallery</h1>
-   
-    
-    <div class="gallery">
+    <div class="gallery-container">
         <div class="gallery-item">
-            <img src="cars.png" alt="Image 1">
-            <p>Toothless</p>
+            <img src="IMG_20230324_203651_727.jpg" alt="Image 1">
         </div>
         <div class="gallery-item">
-            <img src="monsters.png" alt="Image 2">
-            <p>Monsters</p>
+            <img src="IMG_20230812_163745_592.jpg" alt="Image 2">
         </div>
         <div class="gallery-item">
-            <img src="minions.png" alt="Image 3">
-            <p>Minions</p>
+            <img src="IMG_20240221_221653_264.jpg" alt="Image 3">
         </div>
         <div class="gallery-item">
-            <img src="ninja turtles.png" alt="Image 4">
-            <p>Ninja Turtles</p>
+            <img src="IMG_20240604_215603_251.jpg" alt="Image 4">
         </div>
         <div class="gallery-item">
-            <img src="cindrella.png" alt="Image 5">
-            <p>Cinderella</p>
-        </div>
-        <div class="gallery-item">
-            <img src="groot.png" alt="Image 6">
-            <p>Groot</p>
-        </div>
-        <div class="gallery-item">
-            <img src="cars.png" alt="Image 7">
-            <p>Cars</p>
-        </div>
-        <div class="gallery-item">
-            <img src="mermaid.png" alt="Image 8">
-            <p>Little Mermaid</p>
-        </div>
-        <div class="gallery-item">
-            <img src="kunfu panda.png" alt="Image 9">
-            <p>Kung Fu Panda</p>
-        </div>
-        <div class="gallery-item">
-            <img src="inside out.png" alt="Image 10">
-            <p>Inside Out</p>
-        </div>
-        <div class="gallery-item">
-            <img src="rt.png" alt="Image 11">
-            <p>Ratatouille</p>
-        </div>
-        <div class="gallery-item">
-            <img src="wall e.png" alt="Image 12">
-            <p>Wall-E</p>
+            <img src="IMG_20240722_214136_827.jpg" alt="Image 5">
         </div>
     </div>
+
+    <div class="modal" id="modal">
+        <span class="close" id="close">&times;</span>
+        <img class="modal-content" id="modal-img">
+    </div>
+
+    <script src="index.js"></script>
 </body>
 </html>
+
+index.js
+
+const images = document.querySelectorAll('.gallery-item img');
+const modal = document.getElementById('modal');
+const modalImg = document.getElementById('modal-img');
+const closeBtn = document.getElementById('close');
+
+images.forEach((image) => {
+    image.addEventListener('click', () => {
+        modal.style.display = 'block';
+        modalImg.src = image.src; 
+    });
+});
+
+closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+style.css
+
+body {
+    background-color: gray;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e3e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    padding: 20px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.30);
+    cursor: pointer;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    border-radius: 10px;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    color: #ffffff;
+    font-size: 36px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 ```
 
 ## OUTPUT:
 ![alt text](image.png)
-![alt text](image-1.png)
 ## RESULT:
 The program for designing an interactive image gallery using HTML, CSS and JavaScript is executed successfully.
